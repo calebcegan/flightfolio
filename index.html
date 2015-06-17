@@ -1,0 +1,724 @@
+<!DOCTYPE html> 
+<html lang="en-US"> 
+    <head>
+        <!-- Meta Tags -->
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>AirOps Manager</title>
+        <meta name="description" content="Air Ops 2.0" />
+        <!-- Mobile Specifics -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="HandheldFriendly" content="true"/>
+        <meta name="MobileOptimized" content="320"/>
+        <!-- Mobile Internet Explorer ClearType Technology -->
+        <!--[if IEMobile]>  <meta http-equiv="cleartype" content="on">  <![endif]-->
+        <!-- Bootstrap -->
+        <link href="_include/css/bootstrap.min.css" rel="stylesheet">
+        <!-- Main Style -->
+        <link href="_include/css/airops.css" rel="stylesheet">
+        <link href="_include/css/main.css" rel="stylesheet">
+        <!-- Font Icons -->
+        <link href="_include/css/fonts.css" rel="stylesheet">
+        <!-- Responsive -->
+        <link href="_include/css/bootstrap-responsive.min.css" rel="stylesheet">
+        <link href="_include/css/responsive.css" rel="stylesheet">
+        <!-- Fav Icon -->
+        <link rel="shortcut icon" href="#">
+        <link rel="apple-touch-icon" href="#">
+        <link rel="apple-touch-icon" sizes="114x114" href="#">
+        <link rel="apple-touch-icon" sizes="72x72" href="#">
+        <link rel="apple-touch-icon" sizes="144x144" href="#">
+        <!-- Bootstrap Select -->
+        <link href="_include/css/bootstrap-select.min.css" rel="stylesheet"> 
+
+        <!-- Cordova & SQLite--> 
+        <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+        <script type="text/javascript" src="js/SQLitePlugin.js"></script>
+    </head>
+    <body> 
+
+    <!-- Login Screen -->
+    <div id="home-slider" style="display:block;">    
+        <div id="aoLogo" align="center"><img src="_include/assets/logo_working_version.png"></div>
+        <div id="stngsBtn"></div>
+        <div id="loginDiv" align="center">
+            <p id="loginTit">Secure Login</p> 
+            <div id="loginDetails"> 
+                <div class="usrby">USER:</div><div class="selDiv userSel">
+                    <select id="userSel" class="selectpickerU"> 
+                    </select>
+                </div>
+                <div class="pwd">PASSWORD:</div><input type="password" id="passW"> <span class="lspw" href="#">Lost Password?</span>
+                <div class="imgHld"><span id="imgHld">PHOTO ID: <img id="usrPic" src="_include/assets/profile_default.png" class="img-circle"></span>
+                    <span id="loginStat">STATUS: <div class="statCircle"></div></span>
+                </div>
+                <div class="rsnDv">REASON FOR LOGIN:
+                    <div class="btn-group" role="group" style="margin-left:10px;">
+                      <button type="button" class="Btns btn btn-default">Flight</button>
+                      <button type="button" class="Btns btn btn-default">Administration</button>
+                    </div>
+                </div>
+                <br/>
+                <p class="login disclaimer">I confirm the above information to be correct and true,<br>and pre-approved for use in this application.</p>
+                <div id="loginSubmit"></div> 
+                <!-- <span style="border:1px solid grey" id="resetAppy">Reset App Data</span> -->
+            </div>
+        </div> 
+        <div id="welCome" align="center" style="display:none;">
+           <div class="wlcmUsr">Welcome, <span id="welcUser">Ryan Martin</span></div>
+           <div id="contAir" class="continue"></div><div id="nwAir">START NEW AIR</div><div id="accAir"></div>
+           <div id="logOut"></div>
+       </div>
+   </div>
+   <!-- End Login Screen-->
+
+    <div id="appView" style="display:none;">
+    <!-- Begin Application View -->
+        <div id="statBar">
+            <div style="float:left">
+                <span class="statSpan"><span id="syncr"></span>Sync Status: <span id="syncStatus">Connecting..</span></span>
+                <img alt="asset" class="lines" src="_include/assets/line1.png">
+                <span class="statSpan"><img alt="asset" src="_include/assets/Icon_User.png" class="statIco"><span id="statUser"> Unknown User</span></span>
+                <span class="statSpan" id="statCraft">XX-XXX</span>
+                <span class="statSpan" id="statCallNo">XXXXX</span>
+                <span class="statSpan">Serial #<span id="statSerial">XXXX</span></span>
+            </div>
+            <div style="float:right">
+                <span class="statSpanR" id="statLogout">Logout</span>
+                <img alt="asset" class="lines" src="_include/assets/line1.png">
+                <span class="statSpanR" id="statSett"><img alt="asset" src="_include/assets/Icon_Settings.png" class="statIco"> Settings</span>
+                <img alt="asset" class="lines" src="_include/assets/line1.png">
+                <span class="statSpanR" id="statSupp"><a href="http://www.intellissimo.com">Support</a></span>
+            </div>
+        </div>
+        <div class="tabbable">
+            <ul class="nav nav-tabs" id="myTab">
+                <li class="active"><a class="con-start" href="#startTab" data-toggle="tab"></a></li>
+                <li><a class="con-oper" href="#operTab" data-toggle="tab"></a></li>
+                <li><a class="con-maint" href="#maintTab" data-toggle="tab" ></a></li>
+                <li><a class="con-summ" href="#summTab" data-toggle="tab"></a></li>
+                <li><a class="con-flight" href="#flightTab" data-toggle="tab"></a></li>
+                <li><a class="con-sect" href="#sectTab" data-toggle="tab"></a></li>
+            </ul>
+    <!-- Begin StartUp -->
+            <div class="tab-content">
+                <div class="tab-pane fade in active" id="startTab">
+                    <!-- Aircraft -->
+                    <input type="hidden" name="accept" id="accept" value="1" />
+                    <div style="height:125px"><img alt="asset" src="_include/assets/craftBar.png">
+                        <div id="craftStat">STATUS: <div class="statCircle"></div></div>
+                        <div class="tableS"><table id="craftTable">
+                            <thead>
+                                <tr><th>REG.</th><th>CALL SIGN</th><th style="padding:0;">CURRENT LOCATION</th><th>DATE</th><th>TIME</th><th>CONFIRM</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <div class="selDiv reg">
+                                            <select class="selectpicker" id="regSel" title="Select"> 
+                                                <option value="0">---</option>
+                                            </select>
+                                        </div>
+                                    </td>
+                                    <td><input id="clSgn" type="text"></td>
+                                    <td style="padding:0;width:206px"><span id="curLoc"> ---- </span></td>
+                                    <td><span id="curDate">18 July 2015</span></td>
+                                    <td rowspan="2"><span class="timeS">Local: <span id="locTime">15:51</span><br>UTC: <span id="utcTime">16:51</span></span></td>
+                                    <td class="cftCnfMv"><span><label class="slide-toggle"><input id="confMcraft" type="checkbox"/><span class="muPad"></span></label></span></td>
+                                    </tr>
+                                <tr><td><span class="viewStat" id="viewCraftStat">View Status</span></td><td></td><td></td><td></td><td></td><td></td></tr>
+                            </tbody>
+                        </table></div>
+                    </div>
+                    <!-- Crew -->
+                    <div style="height:125px"><img alt="asset" src="_include/assets/crewBar.png">
+                        <div id="crewStat">STATUS: <div class="statCircle"></div></div>
+                        <div class="tableS"><table id="crewTable">
+                        <tr><th>PIC</th><th>SIC</th><th>CA</th><th>ADDED CREW</th><th class="crCnfMv">CONFIRM</th></tr>
+                            <tr>
+                                <td>
+                                    <div class="selDiv seL"><select class="selectpickerL" id="picSel">
+                                        <option>---</option>
+                                    </select></div>
+                                </td>
+                                <td>
+                                    <div class="selDiv seL"><select class="selectpickerL" id="sicSel">
+                                        <option>---</option>
+                                    </select></div>
+                                </td>
+                                <td>
+                                    <div class="selDiv seL"><select class="selectpickerL" id="caSel">
+                                        <option>---</option>
+                                    </select></div>
+                                </td>
+                                <td style="width:142px;">
+                                    <div id="addSel"><img alt="asset" class="addIcon" src="_include/assets/Icon_add.png">Add Crew</div>
+                                </td>
+                                <td class="crCnfMv"><span><label class="slide-toggle"><input id="confMcrew" type="checkbox"/><span class="crPad"></span></label></span></td>
+                            </tr>
+                            <tr><td><span class="viewStat" id="picStat">View Status</span></td>
+                            <td><span class="viewStat" id="sicStat">View Status</span></td>
+                            <td><span class="viewStat" id="caStat">View Status</span></td>
+                            <td></td>
+                            <td></td></tr></tbody>
+                        </table></div>
+                    </div>
+                    <!-- Aircraft Status -->
+                    <div style="height:180px"><img alt="asset" src="_include/assets/airStatBar.png"> 
+                        <div id="statStat">STATUS: <div class="statCircle"></div></div>
+                        <div class="tableS"><table id="statusTable">
+                            <thead><tr><th>ENGINE #1</th><th>ENGINE #2</th><th>AIRFRAME HRS</th><th>LANDINGS</th><th>APU HRS</th><th class="stCnfMv">CONFIRM</th></tr></thead>
+                            <tbody><tr>
+                                <td><span class="hrPad">HOURS: <span id="eng1Hrs">0</span><br>CYCLES: <span id="eng1Cyc">0</span></span></td>
+                                <td><span class="hrPad">HOURS: <span id="eng2Hrs">0</span><br>CYCLES: <span id="eng2Cyc">0</span></span></td>
+                                <td><span class="frlPad" id="stAirhrs">----</span></td>
+                                <td><span class="frlPad" id="stLands">----</span></td>
+                                <td><input type="text" id="apuHrs"></td>
+                                <td class="stCnfMv"><span><label class="slide-toggle"><input id="confAirStat" type="checkbox"/><span class="muPad"></span></label></span></td>
+                           </tr></tbody> 
+                           <tr><td class="cs3" colspan="3"><p><span style="font-weight:500;color:#666">NEXT INSPECTION: </span>
+                                    <span id="nxInsHrs">0</span> or <span id="nxInsDate"> ---- </span></p>
+                                    <p style="margin-left: 75px;">Remaining: <!-- <span id="nxInsHrs">0</span> hours / --> <span id="nxInsDays">0</span> days</p>
+                                </td>
+                                <td></td><td></td><td></td></tr></tbody>
+                        </table></div>
+                    </div>
+                    <!-- Defects -->
+                    <div style="height:115px"><img alt="asset" src="_include/assets/defxBar.png">
+                        <div id="defxStat">STATUS: <div class="statCircle"></div></div>
+                        <div class="tableS">
+                            <table id="defxTable">
+                                <thead>
+                                    <tr><th>LOGGED DEFECTS</th><th></th><th colspan="2">PRE FLIGHT</th><th class="dfCnfMv">CONFIRM</th></tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><span><input type="text" id="numDefx" readonly></span></td>
+                                        <td><span id="defLog"><img alt="asset" class="addIcon" src="_include/assets/icon_Defects.png">View Defect Log</span></td>
+                                        <td colspan="2" style="width:260px;">
+                                            <div class="cndby">Conducted by:</div><div class="selDiv seLL">
+                                            <select id="condBy" class="selectpickerLL">
+                                                <option value="0">----</option>
+                                            </select></div>
+                                        </td>
+                                        <td class="dfCnfMv"><span><label class="slide-toggle"><input id="confDefx" type="checkbox"/><span class="muPad"></span></label></span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <!-- Notes/Accept -->
+                    <div id="stNotes" style="height:130px;border-top:1px solid #cecece;">
+                        <div id="notes"><img alt="asset" src="_include/assets/Icon_Notes.png">Notes</div>
+                        <div id="acceptStart"></div>
+                    </div>
+                </div>
+                <!-- End StartUp --> 
+                <!-- Begin Operational -->          
+                <div class="tab-pane fade in" id="operTab">
+                    <!-- Sector Details -->
+                    <form id="sector_frm" name="sectorForm"> 
+                        <input type="hidden" name="aircraftid" id="aircraft_id" value="" />
+                        <input type="hidden" name="airframe" value="" />
+                        <input type="hidden" name="blockTime" value="" />
+                        <input type="hidden" name="from" value="" />
+                        <input type="hidden" id="fuelID" name="fuelID" value="0" />
+                        <div class="secDetDiv" style="height:195px">
+                            <img alt="asset" src="_include/assets/secDetBar.png">
+                            <div id="secEdit">Edit</div>
+                            <table class="tableOp" id="secDetTable">
+                                <thead><tr><th>SECTOR</th><th>FROM</th><th>TO</th><th>PIC</th><th>SIC</th><th>CA</th><th>PAX</th></tr></thead>
+                                <tbody>
+                                <tr>
+                                <td><div class="selDiv opSm">
+                                    <select class="selectpickerOpsm" id="secNum" name="secOpt"> 
+                                    </select></div>
+                                </td>
+                                <td><span id="secFrm">----</span></td>
+                                <td><div class="selDiv op">
+                                    <select class="selectpickerOp" id="secTo" name="to">
+                                    </select></div></td>
+                                <td><div class="selDiv op">
+                                    <select class="selectpickerOp" id="secPic" name="pic">
+                                    </select></div></td>
+                                <td><div class="selDiv op">
+                                    <select class="selectpickerOp" id="secSic" name="sic">
+                                    </select></div></td>
+                                <td><div class="selDiv op">
+                                    <select class="selectpickerOp" id="secCa" name="hca">
+                                    </select></div></td>
+                                <td><input type="number" id="secPax" class="digit" value="0" name="pax"></td></tr>
+                                </tbody>
+                            </table>
+                            <table id="secDetTable2">
+                            <tr><th>NATURE OF FLIGHT</th><th>CLIENT</th></tr>
+                            <tr><td><div class="selDiv opBg">
+                                    <select class="selectpickerOpbg" id="ntrFlt" name="nature">  
+                                        <option value="NONE">---</option>
+                                        <option value="DELIVERY">Delivery</option>
+                                        <option value="DEMO">Demonstration</option> 
+                                        <option value="MAIN FERRY">Maintenance Ferry</option>
+                                        <option value="MED VAC">Medivac</option> 
+                                        <option value="MILITARY">Military</option> 
+                                        <option value="NON-SCH">Non-Schedule</option>
+                                        <option value="POSTIONING">Positioning</option> 
+                                        <option value="SCHEDULED">Scheduled</option> 
+                                        <option value="TEST">Test</option>
+                                        <option value="TRAINING">Training</option> 
+                                    </select></div></td>
+                                <td>
+                                    <div class="selDiv opBg">
+                                        <select class="selectpickerOpbg" id="client" name="client">
+                                            <option>---</option>
+                                            <option>New Client</option>
+                                        </select>
+                                    </div>
+                                </td>
+                            </tr>
+                            </table>
+                        </div>
+                        <!-- Sector Duration -->
+                        <div id="secDur" style="height:268px;"><img alt="asset" src="_include/assets/secDurBar.png">
+                            <div class="stBtnArea"><span>Blocks on / off</span>
+                                <img alt="asset" id="tmCtrl" src="_include/assets/Btn_Start_Inactive.png"><span id="reseTime">Reset</span>
+                                <span id="engSS"><img alt="asset" class="addIcon" src="_include/assets/Icon_add.png">Engine start / stop</span>
+                            </div>
+                            <div class="timeTables">
+                                <table class="tts">
+                                    <thead>
+                                        <tr id="tHd1"><th class="stUp">START-UP</th><th>BLOCKS OFF</th><th>TAKE OFF</th></tr></thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="stUp"><input id="stUp" name="startUp" maxlength="4" class="digit" type="number" ></td>
+                                            <td><input id="bOff" name="block_off" maxlength="4" class="digit" type="number"></td>
+                                            <td><input id="tOff" name="flight_off" maxlength="4" class="digit" type="number"></td>
+                                        </tr>
+                                    </tbody> 
+                                </table> 
+                                <table class="tts">
+                                    <thead>
+                                        <tr id="tHd2"><th>LANDING</th><th>BLOCKS ON</th><th class="shtDn">SHUT DOWN</th></tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><input id="lndng" name="flight_on" maxlength="4" class="digit" type="number"></td>
+                                            <td><input id="bOn" name="block_on" maxlength="4" class="digit" type="number"></td>
+                                            <td class="shtDn"><input id="shtDn" name="shutdown" maxlength="4" class="digit" type="number"></td>
+                                        </tr>
+                                    </tbody> 
+                                </table> 
+                                <table class="tts">
+                                    <thead>
+                                        <tr><th>DEPT. FUEL</th><th>ARR. FUEL</th><th>FUEL USED (Lbs)</th></tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><input id="dFuel" name="departure_fuel" maxlength="5" class="digit" type="number" /></td>
+                                            <td><input id="aFuel" name="arrival_fuel" maxlength="5" class="digit" type="number" /></td>
+                                            <td><input id="fUsed" readonly="true" class="digit" type="number" /></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                             </div>
+                             <div class="timeTables2">
+                             <table class="tts2"><thead><tr><th>FLIGHT TIMES</th><th>APPROACH TYPE</th></tr></thead>
+                                 <tbody>
+                                    <tr>
+                                        <td>Block time:&nbsp;<span id="bTime">0.00</span> Hours<br>Flight time:&nbsp;<span id="fTime">0.00</span> Hours</td>
+                                        <td><div class="selDiv opBg">
+                                            <select class="selectpickerOpbg" name="apprch" id="apprch">
+                                                <option value="Visual">Visual</option>
+                                                <option value="Instruments">Instruments</option>
+                                                <option value="Blind">Blind</option>
+                                            </select></div></td>
+                                    </tr>
+                             </table> 
+                             <table class="tts3"><thead><tr><th>DISTANCE (NM)</th><th>LANDINGS</th></tr></thead>
+                                <tbody>
+                                    <tr>
+                                        <td><input id="dist" name="dist"  maxlength="5" class="digit" type="number"></td>
+                                        <td><input id="lndgs" name="leg"  maxlength="2" class="digit" type="number"></td>
+                                        <div class="distkm"><span id="distKM">0000</span> Km</div>
+                                    </tr>
+                             </table>
+                            </div> 
+                        </div>
+                        <!-- Notes/Submit -->
+                        <div id="ntDur" style="height:200px;border-top:1px solid #cecece;">
+                            <div id="notes"><img alt="asset" src="_include/assets/Icon_Notes.png">Notes</div>
+                            <div id="subSec"></div>
+                        </div>
+                    </form>
+                </div> 
+                <!-- End Operational -->
+
+                <!-- Begin Maintenance -->          
+                <div class="tab-pane fade in" id="maintTab">
+                    <!-- Defects -->
+                    <div style="height:100%;min-height:200px"><img alt="asset" src="_include/assets/defxBar.png">
+                        <div id="secEditM">Edit</div>
+                        <table id="defxTableM">
+                            <thead>
+                                <tr><th>NO.</th><th>CREW</th><th>LOGGED</th><th>DAYS</th><th>DESCRIPTION</th></tr>
+                            </thead>
+                            <tbody>  
+                            </tbody> 
+                        </table></div>
+                    <!-- Documentation -->
+                    <div style="height:100%;min-height:200px"><img alt="asset" src="_include/assets/docuBar.png">
+                        <div id="secEditDoc"><img alt="asset" src="_include/assets/opEdit.png"></div>
+                        <div class="delCncl"><span id="delButt">Delete</span><span id="cnclDel">Cancel</span></div>
+                        <table id="docTableM">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>DOCUMENTS</th>
+                                    <th>EXPIRY DATE</th>
+                                    <th>DAYS</th>
+                                    <th>STATUS</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>  
+                            </tbody>
+                        </table></div>
+                        <!-- Trend Monitoring -->
+                        <div class="tMon"><img alt="asset" src="_include/assets/trendMBar.png">
+                            <table id="flDet"><caption>FLIGHT DETAILS</caption>
+                                <tr><th>WEIGHT</th><th>OAT/SAT</th><th>IAS</th><th>TAS</th><th>MACH</th><th>FL</th></tr>
+                                <tr><td>22750</td><td>-20</td><td>264</td><td>444</td><td>M 0.75</td><td>FL 330</td></tr>
+                            </table>
+                            <table id="flFlow"><caption>FUEL FLOW</caption>
+                                <tr><th>L</th><th>R</th></tr>
+                                <tr><td>880</td><td>880</td></tr>
+                            </table>
+                            <table id="n1"><caption>N1</caption>
+                                <tr><th>L</th><th>R</th></tr>
+                                <tr><td>92.9</td><td>93</td></tr>
+                            </table>
+                            <table id="n2"><caption>N2</caption>
+                                <tr><th>L</th><th>R</th></tr>
+                                <tr><td>94.7</td><td>94.2</td></tr>
+                            </table>
+                            <table id="itt"><caption>ITT</caption>
+                                <tr><th>L</th><th>R</th></tr>
+                                <tr><td>860</td><td>848</td></tr>
+                            </table>
+                            <table id="oilPr"><caption>OIL PRES.</caption>
+                                <tr><th>L</th><th>R</th></tr>
+                                <tr><td>43</td><td>46</td></tr>
+                            </table>
+                            <table id="oilTmp"><caption>OIL TEMP.</caption>
+                                <tr><th>L</th><th>R</th></tr>
+                                <tr><td>77</td><td>79</td></tr>
+                            </table>
+                            <table id="amps"><caption>AMPS</caption>
+                                <tr><th>L</th><th>R</th></tr>
+                                <tr><td>80</td><td>80</td></tr>
+                            </table>
+                            <table id="flTmp"><caption>FUEL TEMP.</caption>
+                                <tr><td>20</td></tr>
+                            </table>
+                        
+                        </div>
+                </div>
+                <!-- End Maintenance -->            
+                <!-- Begin Summary -->
+                <div class="tab-pane fade in" id="summTab">
+                    <!-- Aircraft -->
+                    <div class="sumCraft"><img alt="asset" src="_include/assets/craftBar.png">
+                        <div class="cliLogo"><img alt="asset" src="_include/assets/cliLogo.png"></div>
+                        <table class="sumCrft1">
+                            <thead>
+                                <tr><th>REGISTRATION</th><th>CALL SIGN</th><th>TYPE</th><th>SERIAL</th><th>NEXT INSPECTION</th><!-- <th>LOG NO.</th> --></tr></thead>
+                            <tbody>   
+                                <tr>
+                                    <td id="_statCraft">ZS-PPH</td>
+                                    <td id="_statCallNo">DNCA</td>
+                                    <td id="_sumType">H25B</td>
+                                    <td id="_statSerial">43717</td>
+                                    <td id="_nxInsHrs">400 HOURS</td>
+                                    <!-- <td>41491</td> -->
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="sumStat" id="statStat2">STATUS: <span class="statCircle"></span></div>
+                        <table class="sumCrft2">
+                            <thead>
+                                <tr><th>CURRENT LOCATION</th><th>DATE</th><th>TIME</th></tr></thead>
+                            <tbody>
+                                <tr><td id="_curLoc">DNCA - Calabar, Nigeria</td><td id="_curDate">---</td><td>Local: <span id="_locTime"></span> / UTC: <span id="_utcTime"></span></td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- Crew -->
+                    <div class="sumCrew"><img alt="asset" src="_include/assets/crewBar.png">
+                        <table class="sumCrw">
+                            <thead>
+                            <tr>
+                                <th>PIC</th><th>SIC</th><th>HEAD C/A</th><th>2ND C/A</th></tr></thead>
+                            <tbody>
+                            <tr>
+                                <td id="pic"> --- </td>
+                                <td id="sic"> --- </td>
+                                <td id="hca"> --- </td>
+                                <td id="2hca"> --- </td></tr></tbody>
+                        </table>
+                        <div class="sumStat" id="crewStat2">STATUS: <span class="statCircle"></span></div>
+                    </div>
+                    <!-- Sector Details -->
+                    <div class="sumSecDet"><img alt="asset" src="_include/assets/secDetBar.png">
+                        <div id="sumSecDetDiv"><table><caption>ENGINE</caption>
+                            <thead>
+                                <tr>
+                                    <th class="bdLT" colspan="10"></th>
+                                    <th class="tdBld" colspan="2">HRS</th>
+                                    <th class="tdBld" colspan="2">CYCLES</th>
+                                    <th class="bdRT" colspan="5"></th>
+                                </tr>
+                                <tr>
+                                    <th>ID</th><th>FROM</th><th>TO</th><th>DIST(NM)</th><th>PIC</th><th>SIC</th><th>H C/A</th><th>BLOCK TIME</th><th>FLIGHT TIME</th><th>AIRFRAME</th><th class="bwht">#1</th><th class="bwht">#2</th><th class="bwht">#1</th><th class="bwht">#2</th><th>LNDS</th><th>FUEL</th><th>PAX</th><th>NATURE</th><th>CLIENT</th></tr>
+                                <tr id="tcfdRw">
+                                    <!--<th colspan="9" class="ttls tdBld">TOTALS CARRIED FWD:</th><th class="bwht">2550 HRS</th><th class="bwht">2550</th><th class="bwht">2550</th><th class="bwht">1634</th><th class="bwht">1634</th><th class="bwht">2411</th><th></th><th></th><th></th><th></th>--></tr>
+                            </thead>
+                            <tbody class="bwht">
+                                <!--<tr><td>1</td><td>DNAA</td><td>DNAA</td><td>239</td><td>RM</td><td>GV</td><td>KS</td><td>OFF: 09:10<br>ON: 10:10<br>1.0 HRS</td><td>OFF: 09:15<br>LND: 10:05<br>0.8 HRS</td><td>0.8</td><td>0.8</td><td>0.8</td><td>1</td><td>1</td><td>1</td><td>1190</td><td>4</td><td>NON-SCH</td><td>NPC</td></tr> -->
+                            </tbody> 
+                            <tfoot></tfoot>
+                       </table></div>
+                    </div>
+                    <!-- Defects -->
+                    <div class="sumdefX"><img alt="asset" src="_include/assets/defxBar.png">
+                        <table><thead><tr><th colspan="2">NEW</th></tr></thead>
+                            <tbody>
+                            <tr><td>044</td><td>Defect description....</td></tr>
+                            <tr><td>043</td><td>Defect description....</td></tr>
+                            <tr><td>042</td><td>Defect description....</td></tr>
+                            <tr><td>041</td><td>Defect description....</td></tr>
+                            </tbody>
+                        </table>
+                        <div class="numDefxDiv"><span style="font-weight:500;">DEFECTS</span><br><input class="bOr" id="sumNumDefx" value="04"></div>
+                        <div class="vwLogDiv"><img alt="asset" src="_include/assets/icon_Defects.png"><span id="vwLog">View Defects Log</span></div>
+                    </div>
+                     <!-- Pre/Post FLight -->
+                    <div class="sumPPF"><img alt="asset" src="_include/assets/ppfBar.png">
+                        <div id="sumEditPPF">Edit</div>
+                        <div class="preCond"><span>PRE FLIGHT</span><br>Conducted by:<input readonly id="preFcndby" value="R. Martin"></div>
+                        <div class="postCond"><span>POST FLIGHT</span><br><span>Conducted by:</span><div class="selDiv ppfSel"><select id="postCondby" class="selectpickerPPF"><option value="">----</option>
+                              <option>J. Smith</option>
+                              <option>R. Dude</option>
+                              <option>P. Reign</option>
+                              <option>Add New User</option>
+                             </select></div>
+                     </div>
+                     <div class="sumStat" id="postFlight">STATUS: <span class="statCircle"></span></div>
+                     <div class="summNotes"><span>NOTES</span><br><textarea id="summNotes"></textarea></div>
+                   </div>
+                   <!-- Submit AIR -->
+                   <div class="subAirSec"><p>By submitting the above AIR it will be taken that the information submitted is correct and true and complies with all requirements prescribed in the Civil Aviation Regulations 1997.</p>
+                   <div id="subAir"></div>
+                   </div>
+                    
+                </div>
+        <!-- End Summary -->  
+        <!-- Begin Flight & Duty -->          
+                <div class="tab-pane fade in" id="flightTab">
+                    Flight and Duty 
+                </div>
+        <!-- End Flight & Duty -->
+        <!-- Begin Sector Log -->
+                <div class="tab-pane fade in" id="sectTab">
+                    <div class="secData"><img alt="asset" src="_include/assets/secData.png">
+                        <div id="fsecTtl">FILTER SECTOR</div>
+                            <div id="fltCtrl">
+                                <div><span class="fltLbl mnth">MONTH:</span><div class="selDiv fSecM"><select class="selectpickerFsecm" id="fltrM"><option value="">----</option></select></div></div>
+                            
+                                <div><span class="fltLbl year">YEAR:</span><div class="selDiv fSecY"><select class="selectpickerFsecy" id="fltrY"><option value="">----</option></select></div></div>
+                                <div id="emlSec"><img src="_include/assets/Icon_email.png" alt="asset">Email sector</div>
+                                <div id="prtSec"><img src="_include/assets/Icon_Print.png" alt="asset">Print sector</div>
+                            </div>
+                            
+                        <table id="secLogTable">
+                            <thead>
+                                <tr><th colspan="3">FLIGHT</th><th>LEG</th><th colspan="3">BLOCKS</th><th colspan="3">FLIGHT</th><th>AIRFRAME</th><th>CYCLES</th><th colspan="2">FUEL</th><th>CLIENT</th><th>PAX</th><th>CREW</th></tr>
+                                <tr><th>DATE</th><th>FROM</th><th>TO</th><th>DIST</th><th>OFF</th><th>ON</th><th>HRS</th><th>OFF</th><th>ON</th><th>HRS</th><th>HRS</th><th>TOTAL</th><th>UPLIFT (Lts)</th><th>BURN (Lbs)</th><td colspan="3"></th></tr>
+                            </thead>
+                            <tbody> 
+                                <!-- <tr><td>07-FEB-15</td><td>DNAA</td><td>DNPO</td><td>285</td><td>16:44</td><td>17:46</td><td>1.0</td><td>16:50</td><td>17:42</td><td>0.7</td><td>3796.0</td><td>3438</td><td>1982</td><td>1510</td><td class="cliWrp">Access Bank</td><td>4</td><td>MH / QV</td></tr> -->
+                            </tbody>
+                            <tfoot>
+                                <!-- <tr><td class="noBrd" colspan="7">TOTALS CARRIED FWD:</td><td>51.3</td><td></td><td></td><td>278.7</td><td>3818.8</td><td>3480</td><td>54324543</td><td>75140</td><td></td><td>342</td><td class="noBrd"></td></tr> -->
+                            </tfoot>
+                        </table>
+                                    
+                    </div>
+                </div>
+        <!-- End Sector Log -->
+            </div>
+        </div>
+        
+        <!-- Footer -->
+        <footer> 
+        </footer>
+        <!-- End Footer -->
+        </div>
+
+        <!-- Modals - just add close comment tag here-->
+        <!-- New User Login Modal-->
+        <div class="modal fade" id="nusrMod">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-body">
+                <h4>New User Login</h4>
+                <p>Enter provided temporary<br>Air Ops Manager password</p>
+                <input type="password" id="nusrPass" placeholder="Enter password">
+                <div class="modBott"><span id="nusrCncl" data-dismiss="modal">Cancel</span><div class="modHR"></div><span id="nusrSv">Ok</span></div>
+              </div>
+            </div><!-- /.modal-content -->
+          </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+        <!-- Add Crew Modal-->
+
+        <div class="modal fade" id="adcrMod">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h4 class="modal-title">Add Crew Member</h4>
+              </div>
+              <div class="modal-body">
+                <form name="addCrew_frm" id="addCrewFrm">
+                    <span class="span_1">FIRST NAME:</span>
+                    <div><input name="fname" id="adcrNameF" type="text" required /></div>
+                    <span class="span_2">LAST NAME:</span>
+                    <div><input name="lname" id="adcrNameL" type="text" required /></div> 
+                     <div style="height:40px;">
+                        <div class="adcrLbl">POSITION:</div>
+                        <div class="selDiv adcrSel">
+                            <select name="position" id="adcrPos" class="selectpickerAD" required >
+                              <option value="">----</option>
+                              <option value="PIC">PIC</option>
+                              <option value="SIC">SIC</option>
+                              <option value="HCA">HCA</option>
+                              <option value="2CA">Other</option>
+                            </select>
+                        </div>
+                    </div> 
+                    <span class="span_3">LICENCE NO.:</span>
+                    <div><input name="licence" id="adcrLicno" type="text" required /></div>
+                    <span class="span_4">LICENCE TYPE:</span>
+                    <div><input name="l_type" id="adcrLicty" type="text"></div>
+                    <div class="adcrDiv">
+                        <span>Crew credentials are valid and current?</span>
+                        <div class="roundedTwo">
+                            <input type="checkbox" id="adcrConf" name="check">
+                            <label for="adcrConf"></label>
+                        </div>
+                    </div>            
+                    <div class="modBott">
+                        <span id="adcrCncl" data-dismiss="modal">Cancel</span>
+                        <div class="modHR"></div>
+                        <span id="adcrSv">Save</span>
+                    </div>
+                </form>
+              </div>
+            </div><!-- /.modal-content -->
+          </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+        <!-- Pre-Flight Login Modal-->
+        <div class="modal fade" id="prfltMod">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h4 class="modal-title">Pre-flight login</h4>
+              </div>
+              <div class="modal-body">
+                <p>Enter Air Ops Manager password for user "<span id="prfltUsr"></span>"</p>
+                <input type="password" id="condByPass" placeholder="Password">
+                <div class="modBott">
+                    <span id="prfltCncl" data-dismiss="modal">Cancel</span>
+                    <div class="modHR"></div><span id="prfltSv">Ok</span>
+                </div>
+              </div>
+            </div><!-- /.modal-content -->
+          </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+    <!-- Reset Duration Modal-->
+        <div class="modal fade" id="rstMod">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h4 class="modal-title">Reset Duration Data</h4>
+              </div>
+              <div class="modal-body">
+                <p>Confirm Duration reset?</p>
+                <p>All sector data will be lost.</p>
+                <div class="modBott"><span id="rstCncl" data-dismiss="modal">Cancel</span><div class="modHR"></div><span id="rstSv">Ok</span></div>
+              </div>
+            </div><!-- /.modal-content -->
+          </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+    <!-- Engine Start/Stop Modal-->
+        <div class="modal fade" id="engstMod">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h4 class="modal-title">Engine Start / Stop</h4>
+              </div>
+              <div class="modal-body">
+                <p>Added text fields allow for input of Engine Start and Stop times.</p>
+                <div class="modBott"><span id="engstCncl" data-dismiss="modal">Cancel</span><div class="modHR"></div><span id="engstSv">Ok</span></div>
+              </div>
+            </div><!-- /.modal-content -->
+          </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+        <!-- Settings Modal -->
+        <div class="modal fade" id="settingMod">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h4 class="modal-title">Settings</h4>
+              </div>
+              <div class="modal-body">
+                <form id="settings">
+                    <p>Confirm Duration reset?</p>
+                    <p>Domain: <i>https://</i><input type="text" name="domain" id="domain"/></p>
+                    <p>Token: <input type="text" name="token" id="token"/></p><br/>
+                    <!-- <input type="submit" value="Confirm" id="confirmSetting" value="" /> -->
+                </form>
+                <div class="modBott"><span id="settingCncl" data-dismiss="modal">Cancel</span><div class="modHR"></div><span id="settingsSv">Ok</span></div>
+              </div>
+            </div><!-- /.modal-content -->
+          </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+    <!-- End Modals -->
+    <!-- End Application View --> 
+
+    <!-- bCrypt -->
+    <script src="js/jBcrypt/MochiKit/MochiKit.js" type="text/javascript"></script>
+    <script src="js/jBcrypt/Clipperz/Base.js" type="text/javascript"></script>
+    <script src="js/jBcrypt/Clipperz/ByteArray.js" type="text/javascript"></script>
+    <script src="js/jBcrypt/Clipperz/Crypto/BigInt.js" type="text/javascript"></script>
+    <script src="js/jBcrypt/Clipperz/Crypto/SHA.js" type="text/javascript"></script>
+    <script src="js/jBcrypt/Clipperz/Crypto/AES.js" type="text/javascript"></script>
+    <script src="js/jBcrypt/Clipperz/Crypto/PRNG.js" type="text/javascript"></script>
+    <script type="text/javascript" src="js/jBcrypt/bCrypt.js"></script>
+    <script type="text/javascript" src="_include/js/modernizr.js"></script>
+
+    <!-- Js --> 
+    <script src="_include/js/jquery.min.js"></script> <!-- jQuery Core -->
+    <script type='text/javascript' src='js/jquery.validate.min.js'></script>
+    <script src="_include/js/bootstrap.min.js"></script> <!-- Bootstrap -->
+    <script src="_include/js/plugins.js"></script> <!-- Contains: jPreloader, jQuery Easing, jQuery ScrollTo, jQuery One Page Navi -->
+    <script src="_include/js/bootstrap-select.min.js"></script> <!-- Default JS -->
+    
+    <!-- Core Application Scripts -->
+    <script type="text/javascript" src="js/daterange/moment.min.js"></script>
+    <script type='text/javascript' src='js/fastclick.js'></script> 
+    <script type="text/javascript" src="js/webSqlSync.js"></script> 
+    <script type="text/javascript" src="js/syncTest.js"></script>
+    <script type="text/javascript" src="_include/js/airops_main.js"></script> 
+    <script type="text/javascript" src="_include/js/main.js"></script> <!-- Default JS -->
+    <script type="text/javascript" src="_include/js/airops2.js"></script> <!-- Default JS -->
+    
+    <!--End Js -->
+  </body>
+</html>

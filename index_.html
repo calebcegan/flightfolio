@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Notification Prompt Dialog Example</title>
+
+    <!-- -->
+	<script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+	<script type="text/javascript" src="js/SQLitePlugin.js"></script>
+    <script src="_include/js/jquery.min.js"></script>  
+    <!-- jQuery Core -->
+    <script type="text/javascript" charset="utf-8">
+    var pictureSource;   // picture source
+    var destinationType; // sets the format of returned value
+
+    document.addEventListener('deviceready', onDeviceReady);
+	
+  	function onDeviceReady(){
+  		pictureSource   = navigator.camera.PictureSourceType;
+      destinationType = navigator.camera.DestinationType;
+  	} 
+
+  	// Called when a photo is successfully retrieved 
+    function onPhotoURISuccess(imageURI) {
+  		var largeImage = document.getElementById('largeImage');
+
+  		// Unhide image elements 
+  		largeImage.style.display = 'block'; 
+  		largeImage.src = imageURI;
+      $("#path").html(imageURI);
+    } 
+
+    // A button will call this function 
+    function capturePhotoEdit() {
+      // Take picture using device camera, and retrieve image URI
+      navigator.camera.getPicture(onPhotoURISuccess, onFail, 
+        { 
+          quality: 30,  
+          saveToPhotoAlbum: false,
+          encodingType: Camera.EncodingType.JPEG, 
+          destinationType: destinationType.FILE_URI  
+        });
+    }
+
+    // A button will call this function 
+    function getPhoto(source) {
+      // Retrieve image file location from specified source
+      navigator.camera.getPicture(onPhotoURISuccess, onFail, 
+        { 
+          quality: 50,
+          destinationType: destinationType.FILE_URI,
+          sourceType: source 
+        });
+    }
+
+    function uploadPhoto(imageURI) {
+      var options = new FileUploadOptions();
+      options.fileKey="file";
+      options.fileName=imageURI.substr(imageURI.lastIndexOf('/')+1);
+      options.mimeType="image/jpeg";
+
+      var params = {};
+          params.value1 = "test";
+          params.value2 = "param";
+
+      options.params = params;
+
+      var ft = new FileTransfer();
+      ft.upload(imageURI, encodeURI(DOMAIN+"/upload.php"), win, fail, options);
+    }
+
+    function win(r) {
+        console.log("Code = " + r.responseCode);
+        console.log("Response = " + r.response);
+        console.log("Sent = " + r.bytesSent);
+    }
+
+    function fail(error) {
+        alert("An error has occurred: Code = " + error.code);
+        console.log("upload error source " + error.source);
+        console.log("upload error target " + error.target);
+    }
+
+    // Perform Cleanup after successful Upload
+    navigator.camera.cleanup(function(){
+      console.log("Cleanup Complete");
+    }, onFail);
+
+    // Called if something bad happens. 
+    function onFail(message) {
+      alert('Operation failed because: ' + message);
+    }
+    
+    </script> 
+  </head>
+  <body><br/><br/><br/><br/> 
+    <button onclick="capturePhotoEdit();">Capture Editable Photo</button> <br>
+    <br/><br/> 
+    <button onclick="getPhoto(pictureSource.PHOTOLIBRARY);">From Photo Library</button><br>  
+    <img style="display:none;width:200px" id="largeImage" src="" />
+    <p id="path"></p>
+  </body>
+</html>

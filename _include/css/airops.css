@@ -1,0 +1,350 @@
+body{width:1024px;height:748px !important;font-family:"Helvetica Neue" !important;background-color:#f8f8f8 !important;font-size:15px !important;color:#666 !important;margin-top:20px;font-weight:normal !important;}html{height:748px !important;}body *{cursor:pointer;-webkit-tap-highlight-color:rgba(0,0,0,0);}
+#appView{display:none;height:100%;border-top:1px solid #cecece;}
+#home-slider{background:url(../img/bg.png) no-repeat;}
+a:hover{color:inherit !important;}
+input:focus,textarea:focus,td[contenteditable=true]:focus{border-color:#016ce8 !important;box-shadow:none !important;}
+td[contenteditable=true]:focus{border:1px solid #016ce8 !important;outline:none !important;}
+input,textarea{-webkit-appearance:none !important;color:#666 !important;}
+select{font-size:15px;color:#666 !important;}.btn,.btn:hover,.btn:focus{color:#666;}
+/*Sync  Spinner*/
+@keyframes spinner{to{transform:rotate(360deg)}}@-webkit-keyframes spinner{to{-webkit-transform:rotate(360deg)}}.syncr{min-width:24px;min-height:24px;position:relative;margin-right:15px}.syncr:before{content:'Loading…';position:absolute;top:50%;left:50%;width:16px;height:16px;margin-top:-10px;margin-left:-10px}.syncr:not(:required):before{content:'';border-radius:50%;border-top:2px solid #03ade0;border-right:2px solid transparent;animation:spinner .6s linear infinite;-webkit-animation:spinner .6s linear infinite}
+#syncr{margin-right:15px;}
+.syncing{visibility:hidden;}
+/*Login Screen*/
+#aoLogo{	margin-top:25px;}
+#loginDiv{width:438px;height:482px;background:url(../img/logBg.png) no-repeat;margin: 25px auto 0 auto;}
+#loginTit{font-size:17px;padding-top:8px;}
+.usrby{font-weight:normal;}
+#passW{width:146px;position:relative;left:3px;letter-spacing:8px;font-size:15px;}
+.pwd{font-weight:normal;position:relative;float:left;left:39px;}
+.lspw{font-size:14px;position:relative;left:10px;color:#007aff;}
+#addUsr{border-top:1px solid #007aff;color:#007aff;}
+#loginDetails>div{margin-bottom:20px;}
+.imgHld{position:relative;top:10px;}#imgHld{position:relative;right:35px;}
+#usrPic{margin-left:5px;border:3px solid #cecece;width:74px;}
+.rsnDiv{position:relative;top:5px;margin-bottom:30px;}
+hr{border-color:#D9DBDF;width:350px;border-style:solid;}
+#loginStat{position:relative;left:6px;}
+.statCircle{width: 18px;height:18px;-webkit-border-radius: 100%;-moz-border-radius: 100%;border-radius: 100%;border:1px solid #cecece;display:inline-block;background-color:transparent;vertical-align:sub;margin-left: 5px;}
+.statCircle.O{background-color:#ffa52f;border-color:transparent !important;}
+.statCircle.R{background-color:#ff3b30;border-color:transparent !important;}
+.statCircle.G{background-color:#40d42c;border-color:transparent !important;}
+.Btns{background-color: #f8f8f8;border: 1px solid #007aff;background-image: none;color: #007aff;}
+.Btns:active,.Btns:hover{color:#f8f8f8;background-image:none;background-color:#007aff;}
+.login.disclaimer{font-style:italic;margin-bottom:15px;}
+#loginSubmit{width:100px;height:41px;background:url(../assets/btn_submit_inactive.png) no-repeat;/*pointer-events:none;*/}
+.subUp{background:url(../assets/Btn_Submit_Up.png) no-repeat !important;pointer-events:auto !important;}.subDn{background:url(../assets/btn_submit_down.png) no-repeat !important;pointer-events:auto !important;}
+#stngsBtn{position:relative;background:url(../assets/btn_settings_up.png) no-repeat;width:100px;height:41px;float:right;right:25px;bottom:156px;}
+.stngsDn{background:url(../assets/btn_settings_down.png) no-repeat !important;}
+/*Welcome Screen*/
+.wlcmUsr{margin-top:40px;margin-bottom:60px;position:relative;left:50px;font-size:17px;}
+#accAir{width:223px;height:41px;position:relative;background:url(../assets/btn_accessPrevAir_up.png) no-repeat;}
+.accairDn{background:url(../assets/btn_accessPrevAir_down.png) no-repeat !important;}
+#nwAir{width:163px;height:41px;position:relative;background:url(../assets/btn_startNewAir_up.png) no-repeat;margin-bottom:10px;}
+.nwairDn{background:url(../assets/btn_startNewAir_down.png) no-repeat !important;}
+#contAir{width:163px;height:41px;position:relative;background:url(../assets/btn_ContinueAir_up.png) no-repeat;margin-bottom:10px;}
+.contairDn{background:url(../assets/btn_ContinueAir_down.png) no-repeat !important;}
+#logOut{width:100px;height:41px;position:relative;background:url(../assets/btn_logout_up.png) no-repeat;float:left;top:235px;left:197px;}
+.logoutDn{background:url(../assets/btn_logout_down.png) no-repeat !important;}
+/*Status Bar*/
+#statBar{height:30px;width:100%;background-image:url(../assets/CloudStripBG.png);}
+.statSpan{margin:0 20px 0 15px;}
+.statSpanR{margin:0 10px 0 10px;color:#007aff;}
+.statIco{margin-right:5px;}
+.lines{moz-vertical-align: baseline;}
+/*Navigation*/
+.nav{margin-bottom:15px !important;}
+.nav-tabs>li>a{padding:0 !important;border:none !important;margin:0 !important;border-radius:0 !important;}
+.con-start{background-image:url(../assets/NavBtn_StartUp_inactive.png);background-position:center center;background-repeat:no-repeat;width:151px;height:41px}.con-oper{background-image:url(../assets/NavBtn_Oper_inactive.png);background-position:center center;background-repeat:no-repeat;width:177px;height:41px}.con-maint{background-image:url(../assets/NavBtn_Maint_inactive.png);background-position:center center;background-repeat:no-repeat;width:184px;height:41px}.con-summ{background-image:url(../assets/NavBtn_Summary_inactive.png);background-position:center center;background-repeat:no-repeat;width:153px;height:41px}.con-flight{background-image:url(../assets/NavBtn_Flight_inactive.png);background-position:center center;background-repeat:no-repeat;width:188px;height:41px}.con-sect{background-image:url(../assets/NavBtn_Sector_inactive.png);background-position:center center;background-repeat:no-repeat;width:171px;height:41px}.con-startHover{background-image:url(../assets/NavBtn_StartUp_Up.png);background-position:center center;background-repeat:no-repeat;width:151px;height:41px}.con-operHover{background-image:url(../assets/NavBtn_Oper_Up.png);background-position:center center;background-repeat:no-repeat;width:177px;height:41px}.con-maintHover{background-image:url(../assets/NavBtn_Maint_Up.png);background-position:center center;background-repeat:no-repeat;width:184px;height:41px}.con-summHover{background-image:url(../assets/NavBtn_Summary_Up.png);background-position:center center;background-repeat:no-repeat;width:153px;height:41px}.con-flightHover{background-image:url(../assets/NavBtn_Flight_Up.png);background-position:center center;background-repeat:no-repeat;width:188px;height:41px}.con-sectHover{background-image:url(../assets/NavBtn_Sector_Up.png);background-position:center center;background-repeat:no-repeat;width:171px;height:41px}.con-startFocus{background-image:url(../assets/NavBtn_StartUp_Down.png);background-position:center center;background-repeat:no-repeat;width:151px;height:41px}.con-operFocus{background-image:url(../assets/NavBtn_Oper_Down.png);background-position:center center;background-repeat:no-repeat;width:177px;height:41px}.con-maintFocus{background-image:url(../assets/NavBtn_Maint_Down.png);background-position:center center;background-repeat:no-repeat;width:184px;height:41px}.con-summFocus{background-image:url(../assets/NavBtn_Summary_Down.png);background-position:center center;background-repeat:no-repeat;width:153px;height:41px}.con-flightFocus{background-image:url(../assets/NavBtn_Flight_Down.png);background-position:center center;background-repeat:no-repeat;width:188px;height:41px}.con-sectFocus{background-image:url(../assets/NavBtn_Sector_Down.png);background-position:center center;background-repeat:no-repeat;width:171px;height:41px}
+/*Startup Page*/
+#craftStat, #crewStat, #statStat,#defxStat{margin-left:45px;margin-top:15px;float:left;font-weight:500;}th{font-weight:500;}
+/*Aircraft*/
+.tableS{margin-left:195px;margin-top:-20px;text-align:center;font-size:15px;}
+.tableS th,.tableS td{padding:0 42.5px 0 0;}
+.tableS th:last-child,.tableS td:last-child{padding-right:0 !important;}
+.tableS select,.tableS input{width:100%;font-size:15px;font-family:"Helvetica Neue";}#curDate{width:85px;}.tableS input{width:86px;margin-top:15px;}
+.cftCnfMv{position:relative;}
+/*Crew*/
+#crewTable th,#crewTable td{padding:0 45px 0 0;}
+.viewStat{color:#007aff;display:none;}
+#caStat{display:inline;}.selStatO{border:1px solid #ffa52f;}
+.addIcon{margin-right:10px;vertical-align:text-top;}
+.delIcon{margin-right:10px;vertical-align:text-top;}
+#addSel a:hover,#addSel a:focus,#addSel a:visited{color:#007aff;}
+.crCnfMv{position:relative;left:2px;}
+/*Aircraft Status*/
+.cs3{padding-top:10px !important;}.cs3 p{margin-bottom:0;color:#ffa52f;}#nxInsHrs{margin-left:9px;}
+#statusTable input[type="text"]{width:61px;margin-top:0;position:relative;bottom:6px;}
+#statusTable td,#statusTable th{padding:0 52px 0 0;}
+#statusTable td:nth-child(5),#statusTable th:nth-child(5){padding-right:45px;}
+.stCnfMv{position:relative;left:75px;}
+/*Defects*/
+#defxTable input{width:21px;position:relative;top:-11px;}
+#defxTable td:nth-child(1),#defxTable th:nth-child(1){padding-right:0;}
+#defxTable td:nth-child(2),#defxTable th:nth-child(2){padding-right:90px;}
+#defxTable td:nth-child(3),#defxTable th:nth-child(3){padding-right:121px;}
+#defLog{color:#007aff;position:relative;top:-9px;}
+label[for="condBy"]{float:left;margin-right:8px;}
+#defxTable th[colspan="2"]{padding-left:50px;}
+.btn-group.bootstrap-select.LL{background-color:#fff;z-index: -1;}
+.btLL{background-color:transparent !important;z-index:0 !important;}
+#numDefx{text-align:center;}
+.dfCnfMv{position:relative;}
+/*Notes & Accept*/
+#notes{font-size:17px;color:#007aff;margin:15px 0 0 25px;width:200px;}
+#notes img{margin-right:10px;}
+.blBrd{border-top-color:#00b9ff !important;}
+#acceptStart{background:url(../assets/btn_Accept_Inactive.png);background-repeat:no-repeat;height:85px;width:118px;float:right;margin:-35px 25px 0px 0;pointer-events:none;}
+.accStHover{background:url(../assets/btn_Accept_Up.png) no-repeat !important;pointer-events:auto !important;}
+.accStFocus{background:url(../assets/btn_Accept_Down.png) no-repeat !important;}
+/*Table Paddings*/
+.timeS{position:relative;top:4px;}
+#curDate{position:relative;top:-9px;}
+#curLoc{position:relative;}
+#curTime{position:relative;top:-9px;}
+#clSgn{position:relative;top:-12px;font-size:1.2vw;}
+.selDiv{position:relative;}
+.selDiv.seL{position:relative;top:-2px;}
+.selDiv.seLL{position:relative;top:-9px;}
+#addSel{position:relative;top:-2px;}
+.crPad{position:relative;top:2px;}
+.muPad{position:relative;top:-5px;}
+.hrPad{position:relative;top:3px;}
+.frlPad{position:relative;top:-10px;}
+.cndby{position:relative;top:-7px;float:left;}
+.usrby{position:relative;float:left;left:80px;}
+/*Operational Page -- Sector Details*/
+.tableOp{margin-top:-20px;text-align:center;font-size:15px;}
+#secEdit{width:64px;height:30px;margin:13px 100px 0 45px;float:left;background:url(../assets/edit_back.png) no-repeat;text-align:center;}
+.donEdit{color:#007aff;}
+#secPax{width:62px;position:relative;top:6px;height:21px;background-color:transparent;}
+.tableOp th:not(:nth-child(7)),.tableOp td:not(:nth-child(7)){padding-right:45px;}
+#secDetTable2{position:relative;left:208px;top:20px;text-align:center;font-size:15px;}
+#secDetTable2 th,#secDetTable2 td{padding-right:40px;}
+.secDetDiv .selDiv,.secDetDiv input,#secDur .selDiv,#secDur input{background-color:transparent;pointer-events:none;}
+.secDetAble,.secDurable{background-color:#fff !important;pointer-events:auto !important;}
+/*Duration*/
+.stBtnArea{width:190px;}
+.stBtnArea span{position:relative;left:30px;font-weight:400;}
+.stBtnArea>img{position:relative;top:66px;right:62px;}
+#reseTime{color:#007aff;top:15px;left:125px;visibility:hidden;}
+#engSS{top:70px;color:#007aff;left:15px;display:inline-block;}
+#secDur table input{width:48px;}
+.timeTables{width:420px;position:relative;left:163px;top:-146px;text-align:center;}
+.tts td{width:125px;}.tts{margin-bottom:10px;}
+.timeTables2{width:375px;position:relative;top:-380px;left:640px;text-align:center;}
+.tts2 td{width:175px;}
+.tts2 .selDiv.op.bg{left:17px;top-15px;}
+.tts3{margin-top:44px;left:49px;position:relative;}
+.tts3 td{width:125px;}
+.distkm{top:101px;position:relative;left:134px;}
+	/*Extra Fields*/.stUp,.shtDn{display:none;}
+/*Notes & Submit*/
+#subSec{background:url(../assets/btn_SubmitSec_Inactive.png) no-repeat;height:85px;width:175px;float:right;margin:-35px 25px 0px 0;}
+.subSecHover{background:url(../assets/btn_SubmitSec_Up.png) no-repeat !important;}
+.subSecFocus{background:url(../assets/btn_SubmitSec_Down.png) no-repeat !important;}
+/*Maintenance -- Defects*/
+#secEditM{width:64px;height:30px;margin:13px 120px 0 45px;float:left;background:url(../assets/edit_back.png) no-repeat;text-align:center;}
+#defxTableM td{text-align:center;border:1px solid #cecece;}
+#defxTableM td:nth-child(1),#defxTableM th:nth-child(1){width:65px;}
+#defxTableM td:nth-child(2),#defxTableM th:nth-child(2){width:135px;}
+#defxTableM td:nth-child(3),#defxTableM th:nth-child(3){width:115px;}
+#defxTableM td:nth-child(4),#defxTableM th:nth-child(4){width:60px;}
+#defxTableM td:nth-child(5),#defxTableM th:nth-child(5){max-width:447px;width:447px;border-right:none;text-align:left;padding-left:10px;}
+/*Documentation*/
+#secEditDoc{width:64px;height:30px;margin:13px 0 0 45px;float:left;background:url(../assets/edit_back.png) no-repeat;text-align:center;}
+#docTableM,#defxTableM{position:relative;top:-24px;}
+#docTableM{right:13px;}
+#docTableM td{text-align:center;border:1px solid #cecece;}
+#docTableM td:nth-child(1),#docTableM th:nth-child(1){width:30px;visibility:hidden;}
+#docTableM td:nth-child(2),#docTableM th:nth-child(2){width:260px;text-align:left;padding-left:10px;}
+#docTableM td:nth-child(3),#docTableM th:nth-child(3){width:115px;}
+#docTableM td:nth-child(4),#docTableM th:nth-child(4){width:60px;}
+#docTableM td:nth-child(5),#docTableM th:nth-child(5){width:70px;}
+#docTableM td:nth-child(6),#docTableM th:nth-child(6){border:none;width:auto;padding-left:10px;}
+.tdView{text-decoration:underline;color:#007aff;}
+.delCncl{position:relative;float:left;top:124px;visibility:hidden;right:65px;}
+#delButt{margin-right:20px;}
+#delButt{text-decoration:underline;color:#ff3b30;}
+#cnclDel{color:#666;}
+.dlrw,.dlrwTD{border:1px solid #ff3b30 !important;}
+.dlrwTD{border-right:none !important;border-left:none !important;}
+
+/*Trend Monitoring*/
+.tMon *{color:#DCDCDC;}/*Until Trend Monitoring Section Working*/
+.tMon{border-bottom:1px solid #cecece;text-align:center;height:100%;min-height:250px;}
+.tMon table{float:left;position:relative;margin:0 14px 15px 0;}
+.tMon table caption{font-weight:500;}
+.tMon table th{background-color:transparent;border:1px solid #cecece;font-weight:400;}
+.tMon table td{background-color:#f8f8f8;border:1px solid #cecece;}
+#flDet{width:400px;margin-left:170px;}
+#flFlow{width:95px}
+#n1{width:95px}
+#n2{width:95px}
+#itt{width:95px}
+#oilPr{width:95px;margin-left:585px;}
+#oilTmp{width:95px}
+#amps{width:95px}
+#flTmp{width:95px}
+/*Summary -- Aircraft*/
+#summTab>div{display:inline-block;}
+.sumCraft{height:135px;}
+.sumCraft table,.sumCraft div{position:relative;float:left;top:-25px;margin-bottom:15px;text-align:center;}
+.cliLogo{top:15px !important;left:25px;}
+.sumCrft1{left:95px;width:px;}
+.sumCrft2{left:195px;top:-30px !important;margin-bottom:0 !important;}
+.sumCraft .sumStat{float:right !important;position:relative;right:25px;font-weight:500;}
+.sumCrft1 td,.sumCrft1 th{padding-right:45px;}
+.sumCrft2 td,.sumCrft2 th{padding-right:45px;}
+/*Crew position:relative;top:-30px;*/
+.sumCrew{text-align:center;height:75px;}
+.sumCrw{position:relative;left:195px;top:-25px;}
+.sumCrw td,.sumCrw th{padding-right:30px;}
+.sumCrew .sumStat{position:relative;float:right;right:25px;bottom:82px;font-weight:500;}
+/*Sector Details*/
+.sumSecDet{}
+.sumSecDet>img{position:relative;z-index:2;}
+#sumSecDetDiv{position:relative;top:-25px;z-index:1;}
+.sumSecDet table{width:100%;position:relative;text-align:center;}
+.sumSecDet table td,.sumSecDet table th{padding:0 2.5px 0 2.5px;font-weight:300;border:1px solid #cecece;}
+.bwht{background-color:#fff;}
+.btrns{background-color:transparent !important;}
+.sumSecDet table tfoot td{background-color:#fff;}
+.ttls{text-align:right;padding-right:10px !important;}
+.sumSecDet caption,.tdBld{font-weight:500 !important;}
+.sumSecDet caption{position:relative;left:560px;margin-bottom:5px;width:115px;}
+.sumSecDet td:last-child,.sumSecDet th:last-child{border-right:none !important;}
+.bdLT{border-left:none !important;border-top:none !important;}
+.bdRT{border-right:none !important;border-top:none !important;}
+.bdLB{border-left:none !important;border-bottom:none !important;border-top:none !important;}
+.bdRB{border-right:none !important;border-bottom:none !important;border-top:none !important;}
+#tcfdRw{height:45px;max-height:1000px;}
+/*Defects*/
+.sumdefX{height:175px;}
+.sumdefX table td:first-child{width:45px;border-right:none;}
+.sumdefX table{width:400px;position:relative;left:195px;top:-30px;text-align:center;}
+.sumdefX table th{text-align:left;padding-left:10px;}
+.sumdefX table td:nth-child(2){text-align:left;padding-left:10px;}
+.sumdefX table td{border:1px solid #cecece;}
+#sumNumDefx{width:35px;height:26px;text-align:center;border-radius:5px;}
+.numDefxDiv{width:100px;float:right;position:relative;bottom:176px;right:283px;text-align:center;}
+.vwLogDiv{position:relative;float:right;width:150px;bottom:150px;}
+#vwLog{padding-left:10px;color:#007aff;}
+/*Pre/Post Flight*/
+.sumPPF{height:235px;}
+#sumEditPPF{width:64px;height:30px;margin:13px 0 0 45px;float:left;background:url(../assets/edit_back.png) no-repeat;text-align:center;}
+#preFcndby{width:132px;margin-left:10px;border-radius:5px;border:1px solid #cecece;height:26px;padding-left:10px;}
+.preCond,.postCond{position:relative;width:256px;float:right;bottom:28px;text-align:center;}
+.postCond{left:46px;}
+.preCond{right:584px}
+.sumPPF .sumStat{position:relative;float:right;left:475px;bottom:25px;font-weight:500;}
+.postCond>span:nth-child(1),.preCond>span:nth-child(1),.summNotes>span{font-weight:500;}
+.summNotes{float:left;position:relative;width:485px;left:525px;}
+#summNotes{width:461px;height:80px;}
+/*Submit AIR*/
+.subAirSec{height:110px;border-top:1px solid #cecece;width:100%;}
+#subAir{background:url(../assets/btn_SubmitAir_Inactive.png);background-repeat:no-repeat;height:85px;width:175px;float:right;position:relative;bottom:80px;right:13px;}
+.subAirHover{background:url(../assets/btn_SubmitAir_Up.png) no-repeat !important;}
+.subAirFocus{background:url(../assets/btn_SubmitAir_Down.png) no-repeat !important;}
+.subAirSec p{width:750px;color:#007aff;font-style:italic;position:relative;top:17px;left:40px;}
+
+/*Sector Log*/
+.secData{height:100%;min-height:250px;}
+#fltCtrl{display:-webkit-inline-box;position:relative;left:215px;top:-28px;}
+#fltCtrl>div{width:200px;display:inherit;}
+.fltLbl{width:60px;position:relative;float:left;top:2px;}.fltLbl.mnth{margin-right:10px;}.fltLbl.year{position:relative;left:25px;}
+#fsecTtl{position:relative;left:360px;top:-28px;}
+#emlSec,#prtSec{color:#007aff;}
+#emlSec img{margin:0 10px 0 15px;}
+#prtSec img{margin:0 10px 0 -15px;}
+#secLogTable{width:100%;text-align:center;}
+#secLogTable td,#secLogTable th{border:1px solid #cecece;}#secLogTable td{font-weight:300}#secLogTable th{font-weight:400}
+.cliWrp{text-overflow:ellipsis;overflow:hidden;width:85px;white-space:nowrap;display:block;border-left-color:transparent !important;border-right-color:transparent !important;border-top-color:transparent !important;}
+.cliWrp:last-of-type{}
+#secLogTable tfoot td[colspan="7"]{text-align:right;padding-right:5px;font-weight:400;}
+.noBrd{border:none !important;}
+
+
+/*Warning Cells AppWide*/
+.tdRed{color:#ff3b30;}.tdOr{color:#ffa52f;}
+.bRed{border:1px solid #ff3b30;}.bOr{border:1px solid #ffa52f;}
+/*Select Boxes Login*/
+a[data-normalized-text='<span class="text">Add New User</span>']{border-top:1px solid #007aff;color:#007aff !important;}
+a[data-normalized-text='<span class="text">Add New User</span>']:hover{color:#f8f8f8 !important;}
+/*Select Boxes Startup*/
+.selButt{background:transparent !important;font-size:15px !important;box-shadow:none !important;padding-left:10px;padding-top:5px;border-color:#cecece;}
+button.btn.dropdown-toggle.selectpicker.selButt{outline:none;}
+.selButtOpen{border-bottom-left-radius:0 !important;border-bottom-right-radius:0 !important;border:1px solid #016ce8;border-bottom:none;}
+.selDiv{width:104px;height:30px;background:url(../assets/Icon_MenuUnexpanded.png) no-repeat 78px 13px #f8f8f8;border-radius:5px;position:relative;bottom:11px;}
+.selDiv.userSel{width:215px;background-position:190px 13px;top:-2px;left:22px;text-align:left;}
+.selDiv.seL{width:100%;background-position:116px 13px;}
+.selDiv.seLL{width:100%;background-position:225px 13px;background-color:transparent;}
+.selStatO{border-color: #ffa52f;border-radius:5px;}
+.selExp{background: url(../assets/Icon_MenuExpanded.png) no-repeat 83px 9px !important;}
+.selExpL{background: url(../assets/Icon_MenuExpanded.png) no-repeat 121px 9px !important;}
+.selExpLL{background: url(../assets/Icon_MenuExpanded.png) no-repeat 230px 9px !important;}
+.selExpU{background: url(../assets/Icon_MenuExpanded.png) no-repeat 191px 9px !important;}
+.dropdown-menu.open{border:1px solid #016ce8;border-top:none;margin-top:0px;border-top:none;border-top-right-radius:0;border-top-left-radius:0;box-shadow:none;width:100%;}
+.dropdown-menu>li>a:hover, .dropdown-menu>li>a:focus{outline:none;background-color:#007aff;}
+/*Select Boxes Operational*/
+.selDiv.op{top:0;width:87px;background-position:64px 13px;background-color:transparent;}
+.selDiv.opSm{top:0;width:62px;background-position:40px 13px;background-color:transparent;}
+.selDiv.opBg{top:0;width:150px;background-position:126px 13px;background-color:transparent;}
+.selExpOp{background: url(../assets/Icon_MenuExpanded.png) no-repeat 65px 9px !important;}
+.selExpOpsm{background: url(../assets/Icon_MenuExpanded.png) no-repeat 40px 9px !important;}
+.selExpOpbg{background: url(../assets/Icon_MenuExpanded.png) no-repeat 126px 9px !important;}
+/*Select Boxes Summary - PPF*/
+.selDiv.ppfSel{width:146px;margin:0 0 15px 0;background-position:122px 13px;top:-2px;float:right;}
+.selExpPPF{background: url(../assets/Icon_MenuExpanded.png) no-repeat 125px 9px !important;}
+/*Select Boxes Sector Log*/
+.selDiv.fSecM{top:0;width:120px;background-position:97px 13px;background-color:#fff !important;}
+.selDiv.fSecY{top:0;width:95px;background-position:72px 13px;background-color:#fff !important;left:18px;}
+.selExpFsecm{background: url(../assets/Icon_MenuExpanded.png) no-repeat 99px 9px !important;}
+.selExpFsecy{background: url(../assets/Icon_MenuExpanded.png) no-repeat 74px 9px !important;}
+
+
+/*Select Boxes Modals*/
+.adcrLbl{float:left;left:67px;position:relative;top:2px;font-weight:500;}
+.selDiv.adcrSel{width:160px;background-position:136px 13px;top:0;float:left;left:88px;}
+.selExpAD{background: url(../assets/Icon_MenuExpanded.png) no-repeat 139px 9px !important;}
+/*Confirm Toggle*/
+.slide-toggle{display:inline-block;-webkit-touch-callout:none;-webkit-tap-highlight-color:transparent;-webkit-text-size-adjust:none;-webkit-user-select:none;user-select:none}.slide-toggle>input[type=checkbox]{-webkit-appearance:none;display:none}.slide-toggle>input[type=checkbox]+span{display:inline-block;position:relative;width:49px;height:28px;background:#40d42c;border-radius:30px;pointer-events:none}.slide-toggle>input[type=checkbox]+span:after{content:'';display:block;position:absolute;left:-.5px;top:0;width:26px;height:26px;background:#f8f8f8;border-radius:26px;border:1px solid #cecece;-webkit-transition:-webkit-transform .25s cubic-bezier(1,-.5,.5,1);transition:transform .25s cubic-bezier(1,-.5,.5,1)}.slide-toggle>input[type=checkbox]+span:before{content:'';display:block;position:absolute;left:0;top:0;width:49px;height:28px;background:#cecece;border-radius:30px;-webkit-transform:scale3d(1,1,1);transform:scale3d(1,1,1);-webkit-transition:-webkit-transform .33s cubic-bezier(1,1.5,0,.5);transition:transform .33s cubic-bezier(1,1.5,0,.5)}.slide-toggle>input[type=checkbox]:checked+span:before{-webkit-transform:scale3d(0,0,0);transform:scale3d(0,0,0)}.slide-toggle>input[type=checkbox]:checked+span:after{-webkit-transform:translate3d(24px,0,0);transform:translate3d(24px,0,0)}
+/*Confirm Toggle Orange
+#crewTable .slide-toggle>input[type="checkbox"]+span{background:#ffa52f;}
+#statusTable .slide-toggle>input[type="checkbox"]+span{background:#ffa52f;}*/
+/*Modal*/
+div.modal{display:none;}.modal *{color:#666 !important;text-align:center;font-size:15px;}.modal h4{margin-bottom:0;font-weight:500;}.modal-body{padding:0;overflow-y:initial;padding-top:17px;}
+.modBott{margin:0 !important;border-top:1px solid #cecece;height:40px;}.modHR{width:1px;height:100%;background-color:#cecece;display:inline-block;}
+.modBott>span:nth-child(3){font-weight:500;}
+/*Add Crew Modal*/
+.span_1{margin:0 -138px 0 50px !important;}.span_2{margin:0 -138px 0 53px !important;}.span_3{margin:0 -138px 0 43px !important;}.span_4{margin:0 -138px 0 33px !important;}
+#adcrMod{width:397px;height:355px;}
+#adcrMod .modal-body>div{margin-bottom:13px;}
+#adcrMod .modal-body input{width:146px;position:relative;left:42px;text-align:left;}
+#adcrMod .modal-body>span{position:relative;float:left;font-weight:500;}
+.adcrDiv{margin-bottom:25px !important;}
+.adcrDiv>span{position:relative;float:left;left:40px;}
+#adcrMod .modBott{height:50px;}
+#adcrCncl,#adcrSv{display:inline-block;width:180px;position:relative;bottom:15px;color:#007aff !important;cursor:pointer;}
+/*New User Login LoginModal*/
+#nusrMod{width:275px;height:193px;}
+#nusrMod .modal-body{padding-top:20px;}
+#nusrCncl,#nusrSv{display:inline-block;width:134px;position:relative;bottom:15px;color:#007aff !important;cursor:pointer;}
+#nusrMod p{margin-bottom:25px;font-weight:300;line-height:normal;}#nusrMod input{text-align:left;width:236px;margin-bottom:15px;}
+#nusrMod .modBott{height:45px;}
+/*Preflight LoginModal*/
+#prfltMod{width:270px;height:205px;}
+#prfltCncl,#prfltSv{display:inline-block;width:134px;position:relative;bottom:15px;color:#007aff !important;cursor:pointer;}
+#prfltMod p{margin-bottom:0;padding:5px;}#prfltMod input{text-align:left;}
+/*Reset Time Modal*/
+#rstMod{width:270px;height:195px;}
+#rstCncl,#rstSv{display:inline-block;width:134px;position:relative;bottom:15px;color:#007aff !important;cursor:pointer;}
+#rstMod p{margin-bottom:15px;}#rstMod p:nth-child(2){margin-bottom:25px;}
+/*Engine Start / Stop Modal*/
+#engstMod{width:270px;height:195px;}
+#engstCncl,#engstSv{display:inline-block;width:134px;position:relative;bottom:15px;color:#007aff !important;cursor:pointer;}
+#engstMod p{padding:4.5px;}
+/* Rounded Checkbox*/
+.roundedTwo input[type=checkbox]{visibility:hidden;left:0!important;width:auto!important}.roundedTwo{width:21px;height:21px;background:#f8f8f8;margin:0;border-radius:50px;position:relative;left:315px}.roundedTwo label{cursor:pointer;position:absolute;width:21px;height:21px;-webkit-border-radius:50px;-moz-border-radius:50px;border-radius:50px;left:4px;top:4px;background:0 0;border:1px solid #cecece}.roundedTwo label:after{opacity:0;content:'';position:absolute;width:12px;height:5px;background:0 0;top:5px;left:4px;border:3px solid #666;border-top:none;border-right:none;-webkit-transform:rotate(-45deg);-moz-transform:rotate(-45deg);-o-transform:rotate(-45deg);-ms-transform:rotate(-45deg);transform:rotate(-45deg)}.roundedTwo label:hover::after{opacity:.3}.roundedTwo input[type=checkbox]:checked+label:after{opacity:1}.roundedTwo input[type=checkbox]:checked+label{border:1px solid #007aff}
+/* Rounded Checkbox - Maintenance Documentation*/
+.delRow .roundedTwo{left:3px;background:transparent;}.delRow .roundedTwo label{left:0;top:0;}.delRow .roundedTwo label:after{transform:none;width:11px;height:0;top:9px;left:4px;border:1px solid #f8f8f8;}.delRow .roundedTwo input[type=checkbox]:checked+label{border:none;background:#ff3b30;}
